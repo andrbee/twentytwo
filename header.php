@@ -10,49 +10,60 @@
  */
 
 ?>
-<!doctype html>
+<!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
-	<meta charset="<?php bloginfo( 'charset' ); ?>">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="profile" href="https://gmpg.org/xfn/11">
-
-	<?php wp_head(); ?>
+    <meta charset="<?php bloginfo( 'charset' ); ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="profile" href="https://gmpg.org/xfn/11">
+    <link href="<?php bloginfo('template_url'); ?>/style/common.css" rel="stylesheet">
+    <link href="<?php bloginfo('template_url'); ?>/style/fonts.css" rel="stylesheet">
+<!--	--><?php //wp_head(); ?>
 </head>
-
 <body <?php body_class(); ?>>
-<div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'twentytwo' ); ?></a>
+<div id="wrapper" class="wrapper">
+    <header class="header">
+        <div id="headerTop" class="header__top">
+            <img id="gamburger" src="<?php bloginfo('template_url'); ?>/images/menu.png" alt="" class="menu-mobile-img">
+            <img src="<?php bloginfo('template_url'); ?>/images/logo.png" alt="" class="logo">
+            <nav id="nav" class="nav">
+                <ul class="nav__ul">
+                    <li class="nav__ul-li">
+                        <a id="buttonAboutStudioNav" href="#aboutStudio">О студии</a>
+                    </li>
+                    <li class="nav__ul-li">
+                        <a id="mainBottomNav" href="#mainBottom">Работы</a>
+                    </li>
+                    <li class="nav__ul-li">
+                        <a id="footerContentNav" href="#footerContentNav">Контакты</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <span class="watermark">от сайта — к продажам</span>
+        <div class="header__bottom">
+            <img src="<?php bloginfo('template_url'); ?>/images/illustration1.png" alt="" class="illustration-one">
+            <div class="header__content">
+                <?php $postid = 9; //Home page ?>
+                <h3 class="header__h3 header__h3-complex">
+                        <span>
+                            <?php echo strip_tags(get_the_title($postid));?>
+                        </span>
+                </h3>
+                <span class="header__content-text">
+                        <?php
+                            $content_post = get_post($postid);
+                            $content = $content_post->post_content;
+                            $content = apply_filters('the_content', $content);
+                            $content = str_replace(']]>', ']]&gt;', $content);
+						    echo strip_tags($content);
+                        ?>
+                    </span>
+                <a  id="buttonOrder" class="button-more _m-b-x modif-more">
+                    Заказать
+                </a>
+            </div>
+            <img src="<?php bloginfo('template_url'); ?>/images/illustration2.png" alt="" class="illustration-two">
+        </div>
+    </header>
 
-	<header id="masthead" class="site-header">
-		<div class="site-branding">
-			<?php
-			the_custom_logo();
-			if ( is_front_page() && is_home() ) :
-				?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-				<?php
-			else :
-				?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-				<?php
-			endif;
-			$twentytwo_description = get_bloginfo( 'description', 'display' );
-			if ( $twentytwo_description || is_customize_preview() ) :
-				?>
-				<p class="site-description"><?php echo $twentytwo_description; /* WPCS: xss ok. */ ?></p>
-			<?php endif; ?>
-		</div><!-- .site-branding -->
-
-		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'twentytwo' ); ?></button>
-			<?php
-			wp_nav_menu( array(
-				'theme_location' => 'menu-1',
-				'menu_id'        => 'primary-menu',
-			) );
-			?>
-		</nav><!-- #site-navigation -->
-	</header><!-- #masthead -->
-
-	<div id="content" class="site-content">

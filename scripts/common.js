@@ -33,7 +33,7 @@ window.onload = function() {
       var text = this.getAttribute('data-text-about');
       var image = this.getAttribute('data-href-image');
 
-      if(name && text && image) {
+      if(name && image) {
          jobTitle.textContent = name;
          jobText.textContent = text;
          jobImg.src = image;
