@@ -21,6 +21,7 @@
 <!--	--><?php //wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
+<?php $postid = 9; // Home page ?>
 <div id="wrapper" class="wrapper">
     <header class="header">
         <div id="headerTop" class="header__top">
@@ -29,22 +30,21 @@
             <nav id="nav" class="nav">
                 <ul class="nav__ul">
                     <li class="nav__ul-li">
-                        <a id="buttonAboutStudioNav" href="#aboutStudio">О студии</a>
+                        <a id="buttonAboutStudioNav" href="#aboutStudio"><?php echo get_field('header_link_about', $postid);?></a>
                     </li>
                     <li class="nav__ul-li">
-                        <a id="mainBottomNav" href="#mainBottom">Работы</a>
+                        <a id="mainBottomNav" href="#mainBottom"><?php echo get_field('header_link_portfolio', $postid);?></a>
                     </li>
                     <li class="nav__ul-li">
-                        <a id="footerContentNav" href="#footerContentNav">Контакты</a>
+                        <a id="footerContentNav" href="#footerContentNav"><?php echo get_field('header_link_contacts', $postid);?></a>
                     </li>
                 </ul>
             </nav>
         </div>
-        <span class="watermark">от сайта — к продажам</span>
+        <span class="watermark"><?php echo get_field('header_mini_blockquote', $postid);?></span>
         <div class="header__bottom">
             <img src="<?php bloginfo('template_url'); ?>/images/illustration1.png" alt="" class="illustration-one">
             <div class="header__content">
-                <?php $postid = 9; //Home page ?>
                 <h3 class="header__h3 header__h3-complex">
                         <span>
                             <?php echo strip_tags(get_the_title($postid));?>
@@ -59,9 +59,7 @@
 						    echo strip_tags($content);
                         ?>
                     </span>
-                <a  id="buttonOrder" class="button-more _m-b-x modif-more">
-                    Заказать
-                </a>
+                <a  id="buttonOrder" class="button-more _m-b-x modif-more"><?php echo get_field('header_button', $postid);?></a>
             </div>
             <img src="<?php bloginfo('template_url'); ?>/images/illustration2.png" alt="" class="illustration-two">
         </div>

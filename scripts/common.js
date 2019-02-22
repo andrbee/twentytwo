@@ -26,6 +26,8 @@ window.onload = function() {
        gamburger = document.getElementById('gamburger'),
        wrapper = document.getElementById('wrapper'),
        nav = document.getElementById('nav'),
+	   form = document.querySelectorAll('.form-write-us'),
+	   form = Array.prototype.slice.call(form, 0),
        elemS = mainBottom;
 
    function setInfoPopup() {
@@ -47,6 +49,42 @@ window.onload = function() {
    function gamburgerAction() {
       wrapper.classList.add('no-scroll');
       nav.classList.add('nav-mobile');
+   }
+
+   function sendAction(e) {
+	   e.preventDefault();
+
+	   var message = new Object();
+	   message.loading = 'Отправка...';
+	   message.success = 'Спасибо! Все отправлено';
+	   message.failure = 'Что-то пошло не так...';
+
+       console.log(this);
+       var action = this.getAttribute('action');
+
+	   var request = new XMLHttpRequest();
+	   request.open('POST', action, true);
+	   request.setRequestHeader('accept', 'application/json');
+
+	   var formData = new FormData(this);
+
+	   // Отправляем данные
+	   request.send(formData);
+
+	   // Функция для наблюдения изменения состояния request.readyState обновления statusMessage соответственно
+	   request.onreadystatechange = function () {
+		   // <4 =  ожидаем ответ от сервера
+		   if (request.readyState < 4)
+			   console.log(message.loading);
+		   // 4 = Ответ от сервера полностью загружен
+		   else if (request.readyState === 4) {
+			   // 200 - 299 = успешная отправка данных!
+			   if (request.status == 200 && request.status < 300)
+				   console.log(message.success);
+			   else
+				   console.log(message.failure);
+		   }
+	   }
    }
 
 
@@ -113,6 +151,12 @@ window.onload = function() {
    collectionPortfolioArr.map(function (element) {
       element.lastElementChild.addEventListener('click',setInfoPopup);
    });
+
+	form.map(function (element) {
+		element.addEventListener('click', sendAction);
+	});
+
+
 
    gamburger.addEventListener('click', gamburgerAction);
    buttonOrder.addEventListener('click',projectApp);

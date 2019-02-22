@@ -11,39 +11,25 @@
 <main class="main">
     <div  class="main__top">
         <div class="main__top-services">
-            <div class="main__top-services__item">
-                <img src="<?php bloginfo('template_url'); ?>/images/1.png" alt="" class="main__top-services__item-img">
-                <span class="main__top-services__item-img-caption">
-                            LANDING PAGE
-                        </span>
-            </div>
-            <div class="main__top-services__item">
-                <img src="<?php bloginfo('template_url'); ?>/images/2.png" alt="" class="main__top-services__item-img">
-                <span class="main__top-services__item-img-caption">
-                            САЙТ-ВИЗИТКА
-                        </span>
-            </div>
-            <div class="main__top-services__item">
-                <img src="<?php bloginfo('template_url'); ?>/images/3.png" alt="" class="main__top-services__item-img">
-                <span class="main__top-services__item-img-caption">
-                            КОРПОРАТИВНЫЙ САЙТ
-                        </span>
-            </div>
+			<?php $rows = get_field('site_types');
+			if($rows) {
+				foreach($rows as $row) {?>
+                    <div class="main__top-services__item">
+                        <img src="<?php echo $row['site_type_icon']; ?>" alt="" class="main__top-services__item-img">
+                        <span class="main__top-services__item-img-caption"><?php echo $row['site_type_name']; ?></span>
+                    </div>
+				<?php }
+			}?>
         </div>
         <div class="main__top-content">
             <div class="main__top-content-left">
-                        <span class="main__top-content-left__text-top">
-                            Сайт должен не просто быть, он должен продавать
-                        </span>
-                <span class="opacity-text-one">30 000+</span>
-                <span class="main__top-content-left__text-bottom">
-                            Именно столько диджитал агентств  ежедневно предлагают создать продающий сайт
-                        </span>
+                        <span class="main__top-content-left__text-top"><?php echo get_field('site_blockquote', $postid);?></span>
+                <span class="opacity-text-one"><?php echo get_field('site_count_agencies', $postid);?>+</span>
+                <span class="main__top-content-left__text-bottom"><?php echo get_field('site_agencies_desc', $postid);?></span>
             </div>
             <div class="figure"></div>
             <div class="main__top-content-right">
-                <p class="main__top-content-right-text">
-                    Заказать сегодня сайт с высоким качеством построения - дело не хитрое, множество веб-студий работают профессионально, создавая действительно качественный продукт, на первый взгляд. Но выполняя свою работу, они забывают о первостепенной роли, на которую сайт нацелен. В итоге сайт не решает вопросы бизнеса даже на 10%. Главная проблема кроется в отсутствии ориентации на рынок, в результате чего вместо информационно наполненного сайта заказчик получает красивую, но бесполезную картинку. Посещение и отклик у читателей такая продукция не получит.
+                <p class="main__top-content-right-text"><?php echo get_field('site_blockquote_desc', $postid);?>
                     <img src="<?php bloginfo('template_url'); ?>/images/f3.png" class="f3">
                 </p>
             </div>
@@ -53,71 +39,30 @@
         <div class="main__middle-content__part-1">
             <div class="main__middle-content__part-1__left">
                 <div class="main__middle-content__part-1__left__content-top">
-                    <div class="main__middle-content__part-1__left__content-top-item">
-                        <img src="<?php bloginfo('template_url'); ?>/images/4.png" alt="" class="main__middle-content__part-1__left__content-top-img">
-                        <span class="main__middle-content__part-1__left__content-top-img-caption">
-                                        АНАЛИЗ КОНКУРЕНТОВ
-                                    </span>
-                    </div>
-                    <div class="main__middle-content__part-1__left__content-top-item">
-                        <img src="<?php bloginfo('template_url'); ?>/images/7.png" alt="" class="main__middle-content__part-1__left__content-top-img">
-                        <span class="main__middle-content__part-1__left__content-top-img-caption">
-                                        АНАЛИЗ СПРОСА
-                                    </span>
-                    </div>
-                    <div class="main__middle-content__part-1__left__content-top-item">
-                        <img src="<?php bloginfo('template_url'); ?>/images/5.png" alt="" class="main__middle-content__part-1__left__content-top-img">
-                        <span class="main__middle-content__part-1__left__content-top-img-caption">
-                                        СЕГМЕНТАЦИЯ
-                                    </span>
-                    </div>
-
-                    <div class="main__middle-content__part-1__left__content-top-item">
-                        <img src="<?php bloginfo('template_url'); ?>/images/8.png" alt="" class="main__middle-content__part-1__left__content-top-img">
-                        <span class="main__middle-content__part-1__left__content-top-img-caption">
-                                        ИССЛЕДОВАНИЕ
-                                    </span>
-                    </div>
-                    <div class="main__middle-content__part-1__left__content-top-item">
-                        <img src="<?php bloginfo('template_url'); ?>/images/6.png" alt="" class="main__middle-content__part-1__left__content-top-img">
-                        <span class="main__middle-content__part-1__left__content-top-img-caption">
-                                        АНАЛИЗ ПРОДУКТА / УСЛУГИ
-                                    </span>
-                    </div>
-                    <div class="main__middle-content__part-1__left__content-top-item">
-                        <img src="<?php bloginfo('template_url'); ?>/images/9.png" alt="" class="main__middle-content__part-1__left__content-top-img">
-                        <span class="main__middle-content__part-1__left__content-top-img-caption">
-                                        АУДИТ ТЕКУЩЕГО СОСТОЯНИЯ
-                                    </span>
-                    </div>
+					<?php $rows = get_field('how_work_stages');
+					if($rows) {
+						foreach($rows as $row) {?>
+                            <div class="main__middle-content__part-1__left__content-top-item">
+                                <img src="<?php echo $row['how_work_stage_icon']; ?>" alt="" class="main__middle-content__part-1__left__content-top-img">
+                                <span class="main__middle-content__part-1__left__content-top-img-caption"><?php echo $row['how_work_stage_title']; ?></span>
+                            </div>
+						<?php }
+					}?>
                 </div>
                 <div class="main__middle-content__part-1__left__content-bottom">
-                            <span class="main__middle-content__part-1__left__content-bottom-text">
-                                Мы усердно работаем над дизайном и внешним видом, но 70% своих сил отдаем именно анализу целей бизнеса. В итоге заказчик получает комплексное решение задачи без дополнительных затрат.
-                            </span>
-                    <span class="text70">
-                                70%
-                            </span>
+                            <span class="main__middle-content__part-1__left__content-bottom-text"><?php echo get_field('how_work_more', $postid);?></span>
+                    <span class="text70"><?php echo get_field('how_work_more_procent', $postid);?>%</span>
                 </div>
             </div>
             <div class="main__middle-content__part-1__right">
-                <h3 class="main__middle-content__part-1__right__h3">
-                    Упор на конструктив
-                </h3>
-                <p class="main__middle-content__part-1__right__p">
-                    Чтобы достичь целей клиента, мы вникаем
-                    в задачу и анализируем не только рынок в целом, но и каждый его пункт.
-                </p>
+                <h3 class="main__middle-content__part-1__right__h3"><?php echo get_field('how_work_emphasis_title', $postid);?></h3>
+                <p class="main__middle-content__part-1__right__p"><?php echo get_field('how_work_emphasis_desc', $postid);?></p>
                 <img src="<?php bloginfo('template_url'); ?>/images/illustration3.png" class="" alt="">
             </div>
         </div>
         <div class="main__middle-content__part-1__left__content-bottom main__middle-content__part-1__left__content-bottom-media">
-                            <span class="main__middle-content__part-1__left__content-bottom-text">
-                                Мы усердно работаем над дизайном и внешним видом, но 70% своих сил отдаем именно анализу целей бизнеса. В итоге заказчик получает комплексное решение задачи без дополнительных затрат.
-                            </span>
-            <span class="text70">
-                                70%
-                            </span>
+                            <span class="main__middle-content__part-1__left__content-bottom-text"><?php echo get_field('how_work_more', $postid);?></span>
+            <span class="text70"><?php echo get_field('how_work_more_procent', $postid);?>%</span>
         </div>
         <div id="aboutStudio" class="main__middle-content__part-2">
             <span class="about-studio"><?php echo get_field('about_title', $postid);?></span>
@@ -140,20 +85,12 @@
                 <img src="<?php bloginfo('template_url'); ?>/images/illustration4.png" alt="" class="main__middle-content__part-2__img">
                 <div class="wrapper-main__middle-content__part-2__content">
                     <div class="main__middle-content__part-2__content">
-                            <span class="main__middle-content__part-2__content__text-top">
-                                Целимся на результат, а не экономию
-                            </span>
-                        <span class="main__middle-content__part-2__content__text-bottom">
-                                Оставьте заявку на разработку
-                            </span>
-                        <span class="main__middle-content__part-2__content__text-absolute">
-                                самое время
-                            </span>
+                            <span class="main__middle-content__part-2__content__text-top"><?php echo get_field('goal_title', $postid);?></span>
+                        <span class="main__middle-content__part-2__content__text-bottom"><?php echo get_field('goal_order_title', $postid);?></span>
+                        <span class="main__middle-content__part-2__content__text-absolute"><?php echo get_field('goal_bit_blockquote', $postid);?></span>
                     </div>
                     <img src="<?php bloginfo('template_url'); ?>/images/arrow.png" alt="" class="arrow">
-                    <a id="project-application-button" href="" class="button-more">
-                        Рассчитать стоимость
-                    </a>
+                    <a id="project-application-button" href="" class="button-more"><?php echo get_field('goal_order_button', $postid);?></a>
                 </div>
             </div>
         </div>
@@ -161,14 +98,8 @@
     <div  class="main__bottom">
         <div id="mainBottom" class="main__bottom__wrapper-portfolio">
             <div id="portfolioContent" class="main__bottom__wrapper-portfolio-content">
-<!--                <div class="main__bottom__wrapper-portfolio-content__item">-->
-<!--                    <img src="--><?php //bloginfo('template_url'); ?><!--/images/s1.png" alt="" class="main__bottom__wrapper-portfolio-content__item-img">-->
-<!--                    <button data-name="name-1" data-text-about="                                        Задача организации, в особенности же дальнейшее развитие различных форм деятельности способствует подготовки и реализации позиций, занимаемых участниками в отношении поставленных задач." data-href-image="images/popup.png" class="main__bottom__wrapper-portfolio-content__item-href">Название работы</button>-->
-<!--                </div>-->
 				<?php
-
 				$images = get_field('portfolio');
-
 				if( $images ): ?>
 						<?php foreach( $images as $image ): ?>
                         <div class="main__bottom__wrapper-portfolio-content__item">

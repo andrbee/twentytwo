@@ -16,12 +16,8 @@
             <div class="footer__content__left__block-top">
                 <img src="<?php bloginfo('template_url'); ?>/images/illustration5.png" alt="" class="footer__content__left__img">
                 <p class="footer__content__left__text">
-                        <span class="footer__content__left__span">
-                            Как с нами связаться
-                        </span>
-                    <span class="footer__content__left__absolute-text">
-                            КОНТАКТЫ
-                        </span>
+                        <span class="footer__content__left__span"><?php echo get_field('contacts_subtitle', $postid);?></span>
+                    <span class="footer__content__left__absolute-text"><?php echo get_field('contacts_title', $postid);?></span>
                 </p>
             </div>
         </div>
@@ -29,14 +25,24 @@
             <div class="wrapper-phone">
                 <img src="<?php bloginfo('template_url'); ?>/images/telephone.png" alt="" class="phone-img">
                 <span class="number">
-                            +375 000 00 00 00
-                        </span>
+				<?php $rows = get_field('contacts_phones');
+				if($rows) {
+					foreach($rows as $row) {?>
+                        <?php echo $row['contact_phone']; ?><br/>
+					<?php }
+				}?>
+                </span>
             </div>
-            <div class="wrapeer-email">
+            <div class="wrapper-phone">
                 <img src="<?php bloginfo('template_url'); ?>/images/email.png" alt="" class="email-img">
                 <span class="email">
-                            email@gmail.com
-                        </span>
+				<?php $rows = get_field('contacts_emails');
+				if($rows) {
+					foreach($rows as $row) {?>
+						<?php echo $row['contact_email']; ?><br/>
+					<?php }
+				}?>
+                </span>
             </div>
         </div>
     </div>
@@ -45,13 +51,15 @@
             <img src="<?php bloginfo('template_url'); ?>/images/logo.png" alt="" class="logo">
         </div>
         <div class="footer__content-block__right">
-            <a id="write-us-button" href="" class="button-more">
-                Написать нам
-            </a>
-            <ul class="social-ul">
-                <li><a href="" class="vk-icon"></a></li>
-                <li><a href="" class="facebook-icon"></a></li>
-                <li><a href="" class="inst-icon"></a></li>
+            <a id="write-us-button" href="" class="button-more"><?php echo get_field('contacts_button', $postid);?></a>
+			<?php $rows = get_field('contacts_socials');
+			if($rows) { ?>
+                <ul class="social-ul">
+                    <?php foreach($rows as $row) {?>
+                        <li><a href="<?php echo $row['contact_social_url']; ?>" style="    background: url(<?php echo $row['contact_social_icon']; ?>), no-repeat; " class="vk-icon"></a></li>
+                    <?php } ?>
+                </ul>
+            <?php }?>
             </ul>
         </div>
     </div>
@@ -75,24 +83,22 @@
                 Отправьте нам сообщение и наш менеджер
                 свяжеться с Вами в ближайшее время!
             </span>
-    <form action="" class="form-write-us">
+    <form action="<?php bloginfo('template_url'); ?>/send.php" class="form-write-us">
         <div class="wrapper-name">
             <img src="<?php bloginfo('template_url'); ?>/images/avatar-inside-a-circle.png" alt="">
-            <input type="text" class="input-style" placeholder="Ваше имя">
+            <input type="text" name="Имя" class="input-style" placeholder="Ваше имя">
         </div>
         <div class="wrapper-telephone">
             <img src="<?php bloginfo('template_url'); ?>/images/telephone2.png" alt="">
-            <input type="text" class="input-style" placeholder="Телефон">
+            <input type="text" name="Телефон" class="input-style" placeholder="Телефон">
         </div>
         <div class="wrapper-email">
             <img src="<?php bloginfo('template_url'); ?>/images/email1.png" alt="">
-            <input type="text" class="input-style" placeholder="Email">
+            <input type="text" name="Email" class="input-style" placeholder="Email">
         </div>
         <div class="wrapper-textarea">
             <img src="<?php bloginfo('template_url'); ?>/images/edit.png" alt="">
-            <textarea name="" id="" cols="60" rows="5" placeholder="Ваше сообщение" class="textarea-input">
-
-                    </textarea>
+            <textarea name="Cообщение" id="" cols="60" rows="5" placeholder="Ваше сообщение" class="textarea-input"></textarea>
         </div>
         <input type="submit" class="button-more" value="Обсудить проект">
         <div class="figure_4"></div>
@@ -104,24 +110,22 @@
     <h3 class="write-us-h3">
         Оставьте заявку на проект!
     </h3>
-    <form action="" class="form-write-us">
+    <form action="<?php bloginfo('template_url'); ?>/send.php" class="form-write-us">
         <div class="wrapper-name">
             <img src="<?php bloginfo('template_url'); ?>/images/avatar-inside-a-circle.png" alt="">
-            <input type="text" class="input-style" placeholder="Ваше имя">
+            <input type="text" name="Имя" class="input-style" placeholder="Ваше имя">
         </div>
         <div class="wrapper-telephone">
             <img src="<?php bloginfo('template_url'); ?>/images/telephone2.png" alt="">
-            <input type="text" class="input-style" placeholder="Телефон">
+            <input type="text" name="Телефон" class="input-style" placeholder="Телефон">
         </div>
         <div class="wrapper-email">
             <img src="<?php bloginfo('template_url'); ?>/images/email1.png" alt="">
-            <input type="text" class="input-style" placeholder="Email">
+            <input type="text" name="Email" class="input-style" placeholder="Email">
         </div>
         <div class="wrapper-textarea">
             <img src="<?php bloginfo('template_url'); ?>/images/edit.png" alt="">
-            <textarea name=""  cols="60" rows="5" placeholder="Ваше сообщение" class="textarea-input">
-
-                    </textarea>
+            <textarea name="Cообщение"  cols="60" rows="5" placeholder="Ваше сообщение" class="textarea-input"></textarea>
         </div>
         <input type="submit" class="button-more" value="Обсудить проект">
         <div class="figure_4"></div>
