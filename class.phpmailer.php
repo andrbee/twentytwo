@@ -5,7 +5,7 @@ class PHPMailer
 {
     public $Version = '5.2.16';
     public $Priority = null;
-    public $CharSet = 'iso-8859-1';
+    public $CharSet = 'UTF-8';
     public $ContentType = 'text/plain';
     public $Encoding = '8bit';
     public $ErrorInfo = '';

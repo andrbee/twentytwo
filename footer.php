@@ -110,7 +110,7 @@
     <h3 class="write-us-h3">
         Оставьте заявку на проект!
     </h3>
-    <form action="<?php bloginfo('template_url'); ?>/send.php" class="form-write-us">
+    <form action="<?php bloginfo('template_url'); ?>/mail.php" class="form-write-us">
         <div class="wrapper-name">
             <img src="<?php bloginfo('template_url'); ?>/images/avatar-inside-a-circle.png" alt="">
             <input type="text" name="Имя" class="input-style" placeholder="Ваше имя">
